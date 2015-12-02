@@ -26,6 +26,9 @@ end
 
 get '/tasks/:id' do
   # get individual task from DB where id = :id
+  sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
+  @individual_task = run_sql(sql)
+  erb :show
 end
 
 get '/tasks/:id/edit' do
