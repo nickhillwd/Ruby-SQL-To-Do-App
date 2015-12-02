@@ -33,10 +33,20 @@ end
 
 get '/tasks/:id/edit' do
   # retrieve and edit a task from DB where id = :id
+  sql = "SELECT * FROM tasks WHERE id = #{params[:id]}"
+  @task = run_sql(sql).first
+  erb :edit
 end
 
 post '/tasks/:id' do
   # persists the edited task to the DB where id = :id
+  new_name = params[:name]
+  new_details = params[:details]
+  edit_id = params[:id]
+  sql = "UPDATE tasks SET name = '#{new_name}', details = '#{new_details}' WHERE id = #{edit_id}"
+  
+  run_sql(sql)
+  redirect to('/tasks')
 end
 
 post '/tasks/:id/delete' do
