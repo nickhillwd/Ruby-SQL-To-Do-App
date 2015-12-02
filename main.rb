@@ -44,13 +44,16 @@ post '/tasks/:id' do
   new_details = params[:details]
   edit_id = params[:id]
   sql = "UPDATE tasks SET name = '#{new_name}', details = '#{new_details}' WHERE id = #{edit_id}"
-  
+
   run_sql(sql)
   redirect to('/tasks')
 end
 
 post '/tasks/:id/delete' do
   # deleted task from DB where id = :id
+  sql = "DELETE FROM tasks WHERE id = #{params[:id]}"
+  run_sql(sql)
+  redirect to('/tasks')
 end
 
 def run_sql(sql)
