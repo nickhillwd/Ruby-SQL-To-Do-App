@@ -5,6 +5,8 @@
   <p><%= task['details'] %></p>
   <a href="/tasks/<%= task['id'] %>/edit">Edit This Task</a>
   <br>
-  <a href="/tasks/<%= task['id'] %>/delete">Delete This Task</a>
   <hr>
+
+  <form action='/tasks/<%= task['id'] %>/delete' method='post'><input type='submit' value='Delete This Task'>
+  </form>
 <% end %>

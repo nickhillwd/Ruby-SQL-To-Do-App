@@ -46,7 +46,7 @@ post '/tasks/:id' do
   sql = "UPDATE tasks SET name = '#{new_name}', details = '#{new_details}' WHERE id = #{edit_id}"
 
   run_sql(sql)
-  redirect to('/tasks')
+  redirect to("/tasks/#{params[:id]}")
 end
 
 post '/tasks/:id/delete' do
